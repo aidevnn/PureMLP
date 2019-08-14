@@ -1,7 +1,7 @@
 # PureMLP
 Simple Multi Layers Perceptron
 
-## Xor Dataset
+### Xor Dataset
 
 ```
 Hello World, MLP on Xor Dataset.
@@ -31,7 +31,7 @@ Time:29 ms
 [1 1] = [0] -> 0.003487
 ```
 
-## Iris Dataset
+### Iris Dataset
 
 ```
 Hello World, MLP on Iris Dataset.
@@ -59,7 +59,7 @@ Time:24 ms
 Test loss:0.0482 acc:0.9667
 ```
 
-## Digits Dataset
+### Digits Dataset
 
 ```
 Hello World, MLP on Digits Dataset.
