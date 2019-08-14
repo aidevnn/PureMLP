@@ -81,11 +81,11 @@ namespace PureMLP
 
         public static void Main(string[] args)
         {
-            //TestXor(true, 100);
-            //TestIris(true, 5);
-            //TestDigits(true, 5);
+            TestXor(true, 100);
+            TestIris(true, 5);
+            TestDigits(true, 5);
 
-            for (int k = 0; k < 5; ++k) TestXor();
+            //for (int k = 0; k < 5; ++k) TestXor();
         }
     }
 }
