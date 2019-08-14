@@ -5,7 +5,7 @@ namespace PureMLP
 {
     public class Program
     {
-        static void TestXor(bool summary = false, int displayEpochs = 500)
+        static void TestXor(bool summary = false, int displayEpochs = 25)
         {
             Console.WriteLine("Hello World, MLP on Xor Dataset.");
 
@@ -22,7 +22,7 @@ namespace PureMLP
             if (summary) net.Summary();
 
             var sw = Stopwatch.StartNew();
-            net.Fit(X, y, 1000, displayEpochs);
+            net.Fit(X, y, 50, displayEpochs);
             Console.WriteLine($"Time:{sw.ElapsedMilliseconds} ms");
 
             if (summary)
@@ -81,7 +81,7 @@ namespace PureMLP
 
         public static void Main(string[] args)
         {
-            TestXor(true, 100);
+            TestXor(true, 5);
             TestIris(true, 5);
             TestDigits(true, 5);
 

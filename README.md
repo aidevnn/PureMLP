@@ -13,22 +13,22 @@ Layer: Dense-Sigmoid    Parameters:     9 Nodes[In:   8 -> Out:1]
 Output Shape:1
 Total Parameters:33
 
-Epoch    0/1000 loss:0.891239 acc:0.500
-Epoch  100/1000 loss:0.034214 acc:1.000
-Epoch  200/1000 loss:0.014472 acc:1.000
-Epoch  300/1000 loss:0.008966 acc:1.000
-Epoch  400/1000 loss:0.006440 acc:1.000
-Epoch  500/1000 loss:0.005003 acc:1.000
-Epoch  600/1000 loss:0.004080 acc:1.000
-Epoch  700/1000 loss:0.003439 acc:1.000
-Epoch  800/1000 loss:0.002969 acc:1.000
-Epoch  900/1000 loss:0.002610 acc:1.000
-Epoch 1000/1000 loss:0.002327 acc:1.000
-Time:29 ms
-[0 0] = [0] -> 0.000659
-[0 1] = [1] -> 0.998016
-[1 0] = [1] -> 0.996845
-[1 1] = [0] -> 0.003487
+Epoch    0/50 loss:1.094242 acc:0.750
+Epoch    5/50 loss:0.483664 acc:1.000
+Epoch   10/50 loss:0.355732 acc:1.000
+Epoch   15/50 loss:0.259921 acc:1.000
+Epoch   20/50 loss:0.194338 acc:1.000
+Epoch   25/50 loss:0.150130 acc:1.000
+Epoch   30/50 loss:0.119701 acc:1.000
+Epoch   35/50 loss:0.098108 acc:1.000
+Epoch   40/50 loss:0.082299 acc:1.000
+Epoch   45/50 loss:0.070385 acc:1.000
+Epoch   50/50 loss:0.061174 acc:1.000
+Time:16 ms
+[0 0] = [0] -> 0.029274
+[0 1] = [1] -> 0.944240
+[1 0] = [1] -> 0.921892
+[1 1] = [0] -> 0.067526
 ```
 
 ### Iris Dataset
