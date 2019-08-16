@@ -40,7 +40,11 @@ Time:0 ms
 ```
 
 ### Iris Dataset
+This is perhaps the best known database to be found in the pattern recognition literature. Fisher's paper is a classic in the field and is referenced frequently to this day. (See Duda & Hart, for example.) The data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant. One class is linearly separable from the other 2; the latter are NOT linearly separable from each other. 
 
+Source : https://archive.ics.uci.edu/ml/datasets/iris
+
+Example of MLP network.
 ```
 (var trainX, var trainY, var testX, var testY) = ImportData.IrisDataset(ratio: 0.8);
 var net = new Network(new SGD(0.025, 0.2), new MeanSquaredLoss(), new ArgMaxAccuracy());
@@ -81,6 +85,11 @@ Test loss:0.0341 acc:1.0000
 
 ### Digits Dataset
 
+This dataset is made up of 1797 8x8 images. Each image is of a hand-written digit.
+
+Source : https://scikit-learn.org/stable/auto_examples/datasets/plot_digits_last_image.html
+
+Example of MLP network.
 ```
 (var trainX, var trainY, var testX, var testY) = ImportData.DigitsDataset(ratio: 0.9);
 var net = new Network(new SGD(0.025, 0.2), new CrossEntropyLoss(), new ArgMaxAccuracy());
