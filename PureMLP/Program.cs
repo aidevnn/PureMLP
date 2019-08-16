@@ -85,7 +85,7 @@ namespace PureMLP
             TestIris(true, 5);
             TestDigits(true, 5);
 
-            //for (int k = 0; k < 5; ++k) TestXor();
+            //for (int k = 0; k < 5; ++k) TestIris();
         }
     }
 }

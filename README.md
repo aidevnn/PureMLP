@@ -44,19 +44,19 @@ Layer: Dense-Sigmoid    Parameters:    18 Nodes[In:   5 -> Out:3]
 Output Shape:3
 Total Parameters:43
 
-Epoch    0/50 loss:0.135775 acc:0.058
-Epoch    5/50 loss:0.110311 acc:0.383
-Epoch   10/50 loss:0.101324 acc:0.658
-Epoch   15/50 loss:0.087375 acc:0.658
-Epoch   20/50 loss:0.072502 acc:0.792
-Epoch   25/50 loss:0.064256 acc:0.800
-Epoch   30/50 loss:0.059118 acc:0.767
-Epoch   35/50 loss:0.056343 acc:0.775
-Epoch   40/50 loss:0.054892 acc:0.842
-Epoch   45/50 loss:0.052422 acc:0.867
-Epoch   50/50 loss:0.050464 acc:0.833
-Time:24 ms
-Test loss:0.0482 acc:0.9667
+Epoch    0/50 loss:0.095830 acc:0.658
+Epoch    5/50 loss:0.070726 acc:0.717
+Epoch   10/50 loss:0.058497 acc:0.842
+Epoch   15/50 loss:0.052561 acc:0.867
+Epoch   20/50 loss:0.049511 acc:0.900
+Epoch   25/50 loss:0.046436 acc:0.892
+Epoch   30/50 loss:0.043566 acc:0.933
+Epoch   35/50 loss:0.040342 acc:0.925
+Epoch   40/50 loss:0.037456 acc:0.967
+Epoch   45/50 loss:0.035476 acc:0.942
+Epoch   50/50 loss:0.032876 acc:0.958
+Time:22 ms
+Test loss:0.0251 acc:1.0000
 ```
 
 ### Digits Dataset

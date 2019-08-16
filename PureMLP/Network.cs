@@ -87,7 +87,7 @@ namespace PureMLP
             int tot = 0;
             foreach (var layer in layers)
             {
-                Console.WriteLine($"Layer: Dense-{layer.activation.Name,-10} Parameters: {layer.Params,5} Nodes[In:{layer.InputNodes,4} -> Out:{layer.OutputNodes}]");
+                Console.WriteLine($"Layer: Dense-{layer.activation.Name,-10} Parameters: {layer.Params,5} Nodes[In:{layer.InputNodes,4} -> Out:{layer.OutputNodes,4}]");
                 tot += layer.Params;
             }
 
