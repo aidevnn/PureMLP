@@ -5,6 +5,12 @@ Simple Multi Layers Perceptron
 
 ```
 Hello World, MLP on Xor Dataset.
+
+...
+var net = new Network(new SGD(0.2, 0.2), new CrossEntropyLoss(), new RoundAccuracy());
+net.AddLayers(2, (8, Activation.Tanh), (1, Activation.Sigmoid));
+...
+
 Summary
 Network: SGD[lr:0.2 momentum:0.2] / CrossEntropyLoss / RoundAccuracy
 Input  Shape:2
@@ -35,6 +41,12 @@ Time:0 ms
 
 ```
 Hello World, MLP on Iris Dataset.
+
+...
+var net = new Network(new SGD(0.025, 0.2), new MeanSquaredLoss(), new ArgMaxAccuracy());
+net.AddLayers(4, (5, Activation.Tanh), (3, Activation.Sigmoid));
+...
+
 Train on 120 / Test on 30
 Summary
 Network: SGD[lr:0.025 momentum:0.2] / MeanSquaredLoss / ArgMaxAccuracy
@@ -63,6 +75,12 @@ Test loss:0.0341 acc:1.0000
 
 ```
 Hello World, MLP on Digits Dataset.
+
+...
+var net = new Network(new SGD(0.025, 0.2), new CrossEntropyLoss(), new ArgMaxAccuracy());
+net.AddLayers(64, (32, Activation.Sigmoid), (10, Activation.Sigmoid));
+...
+
 Train on 1617 / Test on 180
 Summary
 Network: SGD[lr:0.025 momentum:0.2] / CrossEntropyLoss / ArgMaxAccuracy
