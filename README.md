@@ -4,13 +4,15 @@ Simple Multi Layers Perceptron
 ### Xor Dataset
 
 ```
-Hello World, MLP on Xor Dataset.
-
-...
 var net = new Network(new SGD(0.2, 0.2), new CrossEntropyLoss(), new RoundAccuracy());
 net.AddLayers(2, (8, Activation.Tanh), (1, Activation.Sigmoid));
-...
+net.Summary();
+net.Fit(X, y, epochs, displayEpochs);
+```
 
+Output:
+```
+Hello World, MLP on Xor Dataset.
 Summary
 Network: SGD[lr:0.2 momentum:0.2] / CrossEntropyLoss / RoundAccuracy
 Input  Shape:2
@@ -40,13 +42,19 @@ Time:0 ms
 ### Iris Dataset
 
 ```
-Hello World, MLP on Iris Dataset.
-
-...
+(var trainX, var trainY, var testX, var testY) = ImportData.IrisDataset(ratio: 0.8);
 var net = new Network(new SGD(0.025, 0.2), new MeanSquaredLoss(), new ArgMaxAccuracy());
 net.AddLayers(4, (5, Activation.Tanh), (3, Activation.Sigmoid));
-...
+net.Summary();
 
+net.Fit(trainX, trainY, epochs, displayEpochs, batchsize);
+net.Test(testX, testY);
+```
+
+Output:
+
+```
+Hello World, MLP on Iris Dataset.
 Train on 120 / Test on 30
 Summary
 Network: SGD[lr:0.025 momentum:0.2] / MeanSquaredLoss / ArgMaxAccuracy
@@ -74,13 +82,19 @@ Test loss:0.0341 acc:1.0000
 ### Digits Dataset
 
 ```
-Hello World, MLP on Digits Dataset.
-
-...
+(var trainX, var trainY, var testX, var testY) = ImportData.DigitsDataset(ratio: 0.9);
 var net = new Network(new SGD(0.025, 0.2), new CrossEntropyLoss(), new ArgMaxAccuracy());
 net.AddLayers(64, (32, Activation.Sigmoid), (10, Activation.Sigmoid));
-...
+net.Summary();
 
+net.Fit(trainX, trainY, epochs, displayEpochs, batchsize);
+net.Test(testX, testY);
+```
+
+Output:
+
+```
+Hello World, MLP on Digits Dataset.
 Train on 1617 / Test on 180
 Summary
 Network: SGD[lr:0.025 momentum:0.2] / CrossEntropyLoss / ArgMaxAccuracy

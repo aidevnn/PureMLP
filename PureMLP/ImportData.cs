@@ -25,6 +25,7 @@ namespace PureMLP
             (var trainX, var testX) = Utils.Split(X, axis: 0, idx: idx0);
             (var trainY, var testY) = Utils.Split(y, axis: 0, idx: idx0);
 
+            Console.WriteLine($"Train on {trainX.Length} / Test on {testX.Length}");
             return (trainX, trainY, testX, testY);
         }
 
@@ -46,6 +47,7 @@ namespace PureMLP
             trainX = trainX.Select(a => Enumerable.Range(0, 4).Select(i => a[i] / vmax[i]).ToArray()).ToArray();
             testX = testX.Select(a => Enumerable.Range(0, 4).Select(i => a[i] / vmax[i]).ToArray()).ToArray();
 
+            Console.WriteLine($"Train on {trainX.Length} / Test on {testX.Length}");
             return (trainX, trainY, testX, testY);
         }
     }

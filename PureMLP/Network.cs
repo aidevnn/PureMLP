@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace PureMLP
@@ -98,6 +99,8 @@ namespace PureMLP
 
         public void Fit(double[][] trainX, double[][] trainY, int epochs, int displayEpochs = 10, int batchsize = 50, bool shuffle = true)
         {
+            var sw = Stopwatch.StartNew();
+
             Training(true);
             for(int e = 0; e <= epochs; ++e)
             {
@@ -115,6 +118,14 @@ namespace PureMLP
                 if (e % displayEpochs == 0)
                     Console.WriteLine($"Epoch {e,4}/{epochs} loss:{ltLoss.Average():0.000000} acc:{ltAcc.Average():0.000}");
             }
+
+            Console.WriteLine($"Time:{sw.ElapsedMilliseconds} ms");
+        }
+
+        public void Test(double[][] testX, double[][] testY)
+        {
+            (var loss, var acc) = TestOnBatch(testX, testY);
+            Console.WriteLine($"Test loss:{loss:0.0000} acc:{acc:0.0000}");
         }
     }
 }
