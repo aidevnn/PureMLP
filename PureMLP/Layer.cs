@@ -11,7 +11,7 @@ namespace PureMLP
 
         public int Params => (InputNodes + 1) * OutputNodes;
 
-        public double[][] weights, biases, lastX, lastXact, wTmp;
+        public NDarray weights, biases, lastX, lastXact, wTmp;
 
         public IOptimizer wOptm, bOptm;
         public IActivation activation;
@@ -37,44 +37,41 @@ namespace PureMLP
             bOptm = optimizer.Clone();
 
             double lim = 3.0 / Math.Sqrt(InputNodes);
-            weights = Utils.Matrix(InputNodes, OutputNodes);
-            biases = Utils.Matrix(1, OutputNodes);
-            wTmp = Utils.Matrix(InputNodes, OutputNodes);
+            weights = new NDarray(InputNodes, OutputNodes);
+            biases = new NDarray(1, OutputNodes);
+            wTmp = new NDarray(InputNodes, OutputNodes);
 
-            for (int i = 0; i < InputNodes; ++i)
-                for (int j = 0; j < OutputNodes; ++j)
-                    weights[i][j] = -lim + 2 * lim * Utils.Random.NextDouble();
+            for (int i = 0; i < weights.Count; ++i)
+                weights.Data[i] = -lim + 2 * lim * Utils.Random.NextDouble();
         }
 
-        public double[][] Forward(double[][] X)
+        public NDarray Forward(NDarray X)
         {
-            lastX = X.Select(a => a.ToArray()).ToArray();
-            Utils.GemmABC(X, weights, out double[][] res, biases[0]);
-            lastXact = res.Select(a => a.ToArray()).ToArray();
-            Utils.ApplyFunc(res, activation.Func);
+            lastX = new NDarray(X);
+            var res = NDarray.GemmABC(X, weights, biases);
+            lastXact = new NDarray(res);
+            res.ApplyFuncInplace(activation.Func);
 
             return res;
         }
 
-        public double[][] Backward(double[][] accumGrad)
+        public NDarray Backward(NDarray accumGrad)
         {
-            Utils.MulApplyFunc(accumGrad, lastXact, activation.Deriv);
+            accumGrad.MulFbInplace(lastXact, activation.Deriv);
 
-            for (int i = 0; i < InputNodes; ++i)
-                for (int j = 0; j < OutputNodes; ++j)
-                    wTmp[i][j] = weights[i][j];
+            for (int i = 0; i < wTmp.Count; ++i)
+                wTmp.Data[i] = weights.Data[i];
 
             if (IsTraining)
             {
-                Utils.GemmTAB(lastX, accumGrad, out double[][] gw);
+                var gw = NDarray.GemmTABC(lastX, accumGrad);
                 wOptm.Update(weights, gw);
 
-                Utils.SumAxis0(accumGrad, out double[][] gb);
+                var gb = accumGrad.SumAxis0();
                 bOptm.Update(biases, gb);
             }
 
-            Utils.GemmATB(accumGrad, wTmp, out double[][] res);
-            return res;
+            return NDarray.GemmATBC(accumGrad, wTmp);
         }
     }
 }

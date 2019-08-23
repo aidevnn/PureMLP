@@ -46,7 +46,7 @@ namespace PureMLP
 
         public void Training(bool istraining) => layers.ForEach(l => l.IsTraining = istraining);
 
-        public double[][] Forward(double[][] X)
+        public NDarray Forward(NDarray X)
         {
             foreach (var layer in layers)
                 X = layer.Forward(X);
@@ -54,13 +54,13 @@ namespace PureMLP
             return X;
         }
 
-        public void Backward(double[][] accumGrad)
+        public void Backward(NDarray accumGrad)
         {
             foreach (var layer in layers.Reverse<Layer>())
                 accumGrad = layer.Backward(accumGrad);
         }
 
-        public (double,double) TestOnBatch(double[][] X, double[][] y)
+        public (double,double) TestOnBatch(NDarray X, NDarray y)
         {
             var yp = Forward(X);
             var loss = losses.Loss(y, yp);
@@ -69,7 +69,7 @@ namespace PureMLP
             return (loss, acc);
         }
 
-        public (double, double) TrainOnBatch(double[][] X, double[][] y)
+        public (double, double) TrainOnBatch(NDarray X, NDarray y)
         {
             var yp = Forward(X);
             var loss = losses.Loss(y, yp);
@@ -97,7 +97,7 @@ namespace PureMLP
             Console.WriteLine();
         }
 
-        public void Fit(double[][] trainX, double[][] trainY, int epochs, int displayEpochs = 10, int batchsize = 50, bool shuffle = true)
+        public void Fit(NDarray trainX, NDarray trainY, int epochs, int displayEpochs = 10, int batchsize = 50, bool shuffle = true)
         {
             var sw = Stopwatch.StartNew();
 
@@ -107,7 +107,7 @@ namespace PureMLP
                 List<double> ltLoss = new List<double>();
                 List<double> ltAcc = new List<double>();
 
-                var batch = Utils.BatchIterator(trainX, trainY, batchsize, shuffle);
+                var batch = NDarray.BatchIterator(trainX, trainY, batchsize, shuffle);
                 foreach ((var X, var y) in batch)
                 {
                     (double loss, double acc) = TrainOnBatch(X, y);
@@ -122,7 +122,7 @@ namespace PureMLP
             Console.WriteLine($"Time:{sw.ElapsedMilliseconds} ms");
         }
 
-        public void Test(double[][] testX, double[][] testY)
+        public void Test(NDarray testX, NDarray testY)
         {
             (var loss, var acc) = TestOnBatch(testX, testY);
             Console.WriteLine($"Test loss:{loss:0.0000} acc:{acc:0.0000}");

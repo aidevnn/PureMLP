@@ -39,6 +39,7 @@
     <Compile Include="Network.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ImportData.cs" />
+    <Compile Include="NDarray.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="datasets\" />

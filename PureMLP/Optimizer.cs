@@ -6,7 +6,7 @@ namespace PureMLP
     {
         string Name { get; set; }
         IOptimizer Clone();
-        void Update(double[][] w, double[][] grad);
+        void Update(NDarray w, NDarray grad);
     }
 
     public class SGD : IOptimizer
@@ -23,23 +23,17 @@ namespace PureMLP
 
         public IOptimizer Clone() => new SGD(lr, momentum);
 
-        double[][] wUpdt;
-        public void Update(double[][] w, double[][] grad)
+        NDarray wUpdt;
+        public void Update(NDarray w, NDarray grad)
         {
             if (wUpdt == null)
-                wUpdt = w.Select(i => new double[i.Length]).ToArray();
+                wUpdt = new NDarray(w.Shape);
 
-            for (int i = 0; i < wUpdt.Length; ++i)
-            {
-                for (int j = 0; j < wUpdt[i].Length; ++j)
-                    wUpdt[i][j] = momentum * wUpdt[i][j] + (1 - momentum) * grad[i][j];
-            }
+            for (int i = 0; i < wUpdt.Count; ++i)
+                wUpdt.Data[i] = momentum * wUpdt.Data[i] + (1 - momentum) * grad.Data[i];
 
-            for (int i = 0; i < w.Length; ++i)
-            {
-                for (int j = 0; j < w[i].Length; ++j)
-                    w[i][j] = w[i][j] - lr * wUpdt[i][j];
-            }
+            for (int i = 0; i < w.Count; ++i)
+                w.Data[i] = w.Data[i] - lr * wUpdt.Data[i];
         }
     }
 }
